@@ -1,6 +1,6 @@
-import winston from 'winston'
-import { Config } from '.'
-const { combine, timestamp, json } = winston.format
+import winston from 'winston';
+import { Config } from '.';
+const { combine, timestamp, json } = winston.format;
 
 const logger = winston.createLogger({
     level: 'info',
@@ -33,6 +33,6 @@ const logger = winston.createLogger({
             silent: Config.NODE_ENV === 'test',
         }),
     ],
-})
+});
 
-export default logger
+export default logger;

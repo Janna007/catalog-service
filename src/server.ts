@@ -1,15 +1,19 @@
-import express from 'express';
 import { Config } from './config';
 import logger from './config/logger';
-
-const app = express();
-
-export const sum = (a: number, b: number) => {
-    return a + b;
-};
+import app from './app';
 
 const PORT = Config.PORT;
-app.listen(PORT, () => {
-    // console.log(`server is running on ${Config.PORT}`);
-    logger.info('catalog server is running', { PORT });
-});
+
+const startServer = () => {
+    try {
+        app.listen(PORT, () => {
+            // console.log(`server is running on ${Config.PORT}`);
+            logger.info('catalog server is running', { PORT });
+        });
+    } catch {
+        logger.error('error while running server', { PORT });
+        process.exit(1);
+    }
+};
+
+startServer();
